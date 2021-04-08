@@ -60,8 +60,8 @@ public class LibraryDatabase {
     }
 
     public String question4(String title) throws SQLException {
-        String sql = "SELECT BOOKS.title, BRANCHES.branch_name, BORROWERS.borrower_name FROM BOOK_LOANS LEFT JOIN BORROWERS on BORROWERS.borrower_id = BOOK_LOANS.borrower_id LEFT JOIN BOOK_STOCKS on BOOK_STOCKS.book_stock_id = BOOK_LOANS.book_stock_id LEFT JOIN BRANCHES on BRANCHES.branch_id = BOOK_STOCKS.branch_id LEFT JOIN BOOKS on BOOKS.book_id = BOOK_STOCKS.book_id WHERE BOOKS.title = '"
-                + title + "'";
+        String sql = "SELECT BOOKS.title, BRANCHES.branch_name, BORROWERS.borrower_name\r\nFROM BOOK_LOANS\r\nLEFT JOIN BORROWERS on BORROWERS.borrower_id = BOOK_LOANS.borrower_id\r\nLEFT JOIN BOOK_STOCKS on BOOK_STOCKS.book_stock_id = BOOK_LOANS.book_stock_id\r\nLEFT JOIN BRANCHES on BRANCHES.branch_id = BOOK_STOCKS.branch_id\r\nLEFT JOIN BOOKS on BOOKS.book_id = BOOK_STOCKS.book_id\r\nWHERE BOOKS.title = '"
+                + title + "';";
         ResultSet rs = executeQuery(sql);
         StringBuilder sBuilder = new StringBuilder();
         while (rs.next()) {
@@ -72,7 +72,7 @@ public class LibraryDatabase {
     }
 
     public String question5(String branchName) throws SQLException {
-        String sql = "SELECT BOOKS.title, BORROWERS.borrower_name, BORROWERS.borrower_address FROM BOOK_LOANS LEFT JOIN BORROWERS on BORROWERS.borrower_id = BOOK_LOANS.borrower_id LEFT JOIN BOOK_STOCKS on BOOK_STOCKS.book_stock_id = BOOK_LOANS.book_stock_id LEFT JOIN BOOKS on BOOKS.book_id = BOOK_STOCKS.book_id LEFT JOIN BRANCHES on BRANCHES.branch_id = BOOK_STOCKS.branch_id WHERE BRANCHES.branch_name = '"
+        String sql = "SELECT BOOKS.title, BORROWERS.borrower_name, BORROWERS.borrower_address\r\nFROM BOOK_LOANS\r\nLEFT JOIN BORROWERS on BORROWERS.borrower_id = BOOK_LOANS.borrower_id\r\nLEFT JOIN BOOK_STOCKS on BOOK_STOCKS.book_stock_id = BOOK_LOANS.book_stock_id\r\nLEFT JOIN BOOKS on BOOKS.book_id = BOOK_STOCKS.book_id\r\nLEFT JOIN BRANCHES on BRANCHES.branch_id = BOOK_STOCKS.branch_id\r\nWHERE BRANCHES.branch_name = '"
                 + branchName + "' and BOOK_LOANS.due_date = date('2020-11-23')";
         ResultSet rs = executeQuery(sql);
         StringBuilder sBuilder = new StringBuilder();

@@ -81,7 +81,7 @@ public class HTTPServer {
             Map<String, String> headers = new HashMap<>();
             while (request.ready()) {
                 line = request.readLine();
-                if (line.trim().isBlank()) {
+                if (line.trim().isEmpty()) {
                     break;
                 } else {
                     String[] parts = line.split(":");
